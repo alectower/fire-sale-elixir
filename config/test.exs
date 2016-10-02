@@ -13,9 +13,4 @@ config :logger, level: :warn
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :fire_sale, FireSale.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "fire_sale_test",
-  pool: Ecto.Adapters.SQL.Sandbox
+import_config "db.exs"

@@ -16,7 +16,9 @@ defmodule FireSale.Router do
   scope "/", FireSale do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", AlertController, :index
+
+    resources "/alerts", AlertController, only: [:index, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

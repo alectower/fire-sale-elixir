@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    %h2 Alert me for the fire sale!
+.row
+  .col-md-12
+    %br
+    %table.table
+      %thead
+        %tr
+          %th Company Symbol
+          %th Alert Price
+          %th
+      %tbody
+        %tr
+          = form_for @changeset, "/alerts", fn f ->
+            %td
+              = text_input f, :symbol, class: "form-control", style: "width: 100px"
+            %td
+              = text_input f, :price, class: "form-control", style: "width: 100px"
+            %td
+              = submit "Add Alert", class: "btn btn-success"
+          = end
+      = for alert <- @alerts do
+        %tr
+          %td= link alert.symbol, to: alert |> symbolLink, target: "_blank"
+          %td
+            $
+            = alert |> price
+          %td= link "Delete Alert", to: alert_path(@conn, :delete, alert.id), method: :delete, class: "btn btn-danger"
+      = end
+%br/

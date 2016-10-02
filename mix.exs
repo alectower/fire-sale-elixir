@@ -4,7 +4,7 @@ defmodule FireSale.Mixfile do
   def project do
     [app: :fire_sale,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.3.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -33,7 +33,7 @@ defmodule FireSale.Mixfile do
      {:phoenix_ecto, "~> 2.0"},
      {:postgrex, "~> 0.0"},
      {:phoenix_html, "~> 2.1"},
-     {:phoenix_haml, "~> 0.0"},
+     {:phoenix_haml, "~> 0.2"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"}]
   end
