@@ -1,0 +1,14 @@
+.row
+  .col-md-12.col-md-offset-2
+    %h2 Sign in
+.row
+  .col-md-8.col-md-offset-2
+    = form_for @conn, session_path(@conn, :create), [as: :session], fn f ->
+      .form-group
+        = text_input f, :email, placeholder: "Email", class: "form-control", autofocus: true
+
+      .form-group
+        = password_input f, :password, placeholder: "Password", class: "form-control"
+
+      = submit "Sign in", class: "btn btn-primary"
+    = end

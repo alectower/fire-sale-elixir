@@ -1,9 +1,10 @@
 defmodule FireSale.Alert do
   use FireSale.Web, :model
 
-  schema "alerts" do
+  schema "alert" do
     field :symbol, :string
     field :price, :integer
+    field :user_id, :integer
 
     timestamps()
   end

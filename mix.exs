@@ -17,8 +17,12 @@ defmodule FireSale.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {FireSale, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+     applications: applications(Mix.env)]
+  end
+
+  defp applications(:dev), do: applications(:all) ++ [:remix]
+  defp applications(_) do
+    [:phoenix, :phoenix_html, :cowboy, :logger, :phoenix_ecto, :postgrex]
   end
 
   # Specifies which paths to compile per environment
@@ -34,7 +38,10 @@ defmodule FireSale.Mixfile do
      {:postgrex, "~> 0.0"},
      {:phoenix_html, "~> 2.1"},
      {:phoenix_haml, "~> 0.2"},
+     {:guardian, "~> 0.13.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:cowboy, "~> 1.0"}]
+     {:comeonin, "~> 2.4"},
+     {:cowboy, "~> 1.0"},
+     {:remix, "~> 0.0.1", only: :dev}]
   end
 end

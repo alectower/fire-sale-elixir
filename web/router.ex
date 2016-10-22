@@ -7,22 +7,32 @@ defmodule FireSale.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.EnsureAuthenticated, handler: FireSale.Token
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", FireSale do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser]
+
+    resources "/sessions", SessionController,
+      only: [:new, :create, :delete]
+  end
+
+  scope "/", FireSale do
+    pipe_through [:browser, :browser_auth]
 
     get "/", AlertController, :index
 
-    resources "/alerts", AlertController, only: [:index, :create, :delete]
-  end
+    resources "/users", UserController,
+      only: [:show, :index, :update]
 
-  # Other scopes may use custom stacks.
-  # scope "/api", FireSale do
-  #   pipe_through :api
-  # end
+    resources "/alerts", AlertController,
+      only: [:index, :create, :delete]
+  end
 end

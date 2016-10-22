@@ -1,0 +1,7 @@
+- if logged_in?(@conn) do
+  .container
+    %nav(role="navigation")
+      .nav.nav-pills.pull-right
+        = current_user(@conn).email
+
+        = link "Sign out", to: session_path(@conn, :delete, :access), method: :delete, class: "btn btn-danger"

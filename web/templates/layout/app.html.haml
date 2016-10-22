@@ -11,6 +11,11 @@
     %link(rel="stylesheet" href='#{static_path(@conn, "/css/app.css")}')
 
   %body
+    = render "nav.html", conn: @conn
+
+    %br
+    %br
+
     .container
       %p.alert.alert-info(role="alert")= get_flash(@conn, :info)
       %p.alert.alert-danger(role="alert")= get_flash(@conn, :error)

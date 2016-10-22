@@ -22,6 +22,15 @@ config :logger, :console,
 config :phoenix, :template_engines,
   haml: PhoenixHaml.Engine
 
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "FireSale",
+  ttl: { 30, :days},
+  verify_issuer: true,
+  secret_key: "yk10YXLiMcQQTe7UrSuMLpy/j4q/AIQ9H5JBK0vnFNBGT3RzFoQ8fAUsNda3n5e8",
+  serializer: FireSale.GuardianSerializer
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

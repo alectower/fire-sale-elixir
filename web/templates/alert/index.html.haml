@@ -14,7 +14,7 @@
         %tr
           = form_for @changeset, "/alerts", fn f ->
             %td
-              = text_input f, :symbol, class: "form-control", style: "width: 100px"
+              = text_input f, :symbol, class: "form-control", style: "width: 100px", autofocus: true
             %td
               = text_input f, :price, class: "form-control", style: "width: 100px"
             %td
@@ -28,4 +28,5 @@
             = alert |> price
           %td= link "Delete Alert", to: alert_path(@conn, :delete, alert.id), method: :delete, class: "btn btn-danger"
       = end
-%br/
+
+%br

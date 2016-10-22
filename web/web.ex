@@ -45,6 +45,7 @@ defmodule FireSale.Web do
       use Phoenix.HTML
 
       import FireSale.Router.Helpers
+      import FireSale.ViewHelper
     end
   end
 
