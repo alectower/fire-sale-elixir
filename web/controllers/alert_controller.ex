@@ -13,6 +13,12 @@ defmodule FireSale.AlertController do
   end
 
   def create(conn, %{"alert" => alert_params}) do
+    alert_params = Map.put(
+      alert_params,
+      "user_id",
+      Guardian.Plug.current_resource(conn).id
+    )
+
     changeset = Alert.changeset(%Alert{}, alert_params)
 
     case Repo.insert(changeset) do

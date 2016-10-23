@@ -21,7 +21,7 @@ defmodule FireSale.Alert do
     end
 
     struct
-    |> cast(new_params, [:symbol, :price])
+    |> cast(new_params, [:symbol, :price, :user_id])
   end
 
   def convert_price(params) do
