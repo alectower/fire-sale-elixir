@@ -1,0 +1,8 @@
+<h1> It's a fire sale! </h1>
+<%= for alert <- @alerts do %>
+  <p>
+    <%= link "#{alert[:symbol]}'s", to: "https://www.google.com/finance?q=#{alert[:symbol]}", target: "_blank" %>
+    alert price <%= "$#{alert[:alert_price]}" %>
+    has been triggered, it is now trading at <%= "$#{alert[:price]}!" %>
+  </p>
+<%= end %>

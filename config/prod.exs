@@ -59,3 +59,7 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
+
+config :fire_sale, FireSale.Mailer,
+  adapter: Bamboo.SendgridAdapter,
+  api_key: System.get_env("SENDGRID_API_KEY")

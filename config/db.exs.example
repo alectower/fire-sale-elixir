@@ -1,21 +1,21 @@
 use Mix.Config
 
-if Mix.env == :test do
-  args = %{
+if Mix.env == :production do
+  args = [
     adapter: Ecto.Adapters.Postgres,
     username: "postgres",
     password: "postgres",
-    database: "fire_sale_test",
+    database: "fire_sale_production",
     pool: Ecto.Adapters.SQL.Sandbox
-  }
+  ]
 else
-  args = %{
+  args = [
     adapter: Ecto.Adapters.Postgres,
-    username: "postgres",
-    password: "postgres",
+    username: "",
+    password: "",
     database: "fire_sale_#{Mix.env}",
     pool_size: 10
-  }
+  ]
 end
 
 config :fire_sale, FireSale.Repo, args

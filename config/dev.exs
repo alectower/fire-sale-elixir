@@ -34,3 +34,9 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 import_config "db.exs"
+
+# set ENV vars
+import_config "env.exs"
+
+config :fire_sale, FireSale.Mailer,
+  adapter: Bamboo.LocalAdapter

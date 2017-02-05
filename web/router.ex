@@ -35,4 +35,8 @@ defmodule FireSale.Router do
     resources "/alerts", AlertController,
       only: [:index, :create, :delete]
   end
+
+  if Mix.env == :dev do
+    forward "/sent_emails", Bamboo.EmailPreviewPlug
+  end
 end

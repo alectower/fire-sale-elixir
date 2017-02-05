@@ -22,7 +22,7 @@ defmodule FireSale.Mixfile do
 
   defp applications(:dev), do: applications(:all) ++ [:remix]
   defp applications(_) do
-    [:phoenix, :phoenix_html, :cowboy, :logger, :phoenix_ecto, :postgrex]
+    [:phoenix, :phoenix_html, :cowboy, :logger, :phoenix_ecto, :postgrex, :bamboo]
   end
 
   # Specifies which paths to compile per environment
@@ -33,7 +33,8 @@ defmodule FireSale.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 1.2"},
+    [
+     {:phoenix, "~> 1.2"},
      {:phoenix_ecto, "~> 2.0"},
      {:postgrex, "~> 0.0"},
      {:phoenix_html, "~> 2.1"},
@@ -42,6 +43,9 @@ defmodule FireSale.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:comeonin, "~> 2.4"},
      {:cowboy, "~> 1.0"},
-     {:remix, "~> 0.0.1", only: :dev}]
+     {:httpotion, "~> 3.0.2"},
+     {:remix, "~> 0.0.1", only: :dev},
+     {:bamboo, "~> 0.8"}
+   ]
   end
 end
