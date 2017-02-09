@@ -11,6 +11,6 @@ defmodule FireSale.AlertMailer do
     |> subject("FireSale Alerts!")
     |> assign(:alerts, alerts)
     |> render(:alert)
-    |> Mailer.deliver_later
+    |> Mailer.deliver_now
   end
 end
