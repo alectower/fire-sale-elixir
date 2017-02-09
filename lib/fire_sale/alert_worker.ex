@@ -21,8 +21,7 @@ defmodule FireSale.AlertWorker do
     |> Enum.each(fn (user) ->
       alerts = Repo.all(
         from a in Alert,
-        join: u in User,
-        where: a.user_id == u.id
+        where: a.user_id == ^user.id
       )
 
       if Enum.count(alerts) > 0 do
