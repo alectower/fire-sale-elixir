@@ -7,6 +7,7 @@ defmodule FireSale.AlertController do
     changeset = Alert.changeset(%Alert{})
     alerts = Repo.all(
       from a in Alert,
+      where: a.user_id == ^Guardian.Plug.current_resource(conn).id,
       order_by: [a.symbol]
     )
     render(conn, "index.html", alerts: alerts, changeset: changeset)
