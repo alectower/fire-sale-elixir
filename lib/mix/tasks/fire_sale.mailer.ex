@@ -8,7 +8,9 @@ defmodule Mix.Tasks.FireSale.Mailer do
 
     if day != 6 && day != 7 do
       Mix.shell.info "Sending alerts!"
+
       Mix.Task.run "app.start", []
+
       FireSale.AlertWorker.run
     else
       Mix.shell.info "It's the weekend, party!"
