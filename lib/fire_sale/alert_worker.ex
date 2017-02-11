@@ -27,7 +27,7 @@ defmodule FireSale.AlertWorker do
       if Enum.count(alerts) > 0 do
         url = "https://api.tradeking.com/v1/market/ext/quotes.json?symbols="
         url = url <> (alerts |> Enum.map(fn (a) -> a.symbol end) |> Enum.join(","))
-        url = url <> "&fids=symbol,ask,bid,last"
+        url = url <> "&fids=exch,symbol,ask,bid,last"
 
         auth_string = Oauth.hmac_sha1_auth_string(url, consumer, token)
 
@@ -62,6 +62,7 @@ defmodule FireSale.AlertWorker do
           price = if last_price > 0 do last_price else ask_price end
           if price <= alert_price do
             %{
+              exchange: company[:exch],
               symbol: company[:symbol],
               alert_price: alert_price,
               ask_price: ask_price,
