@@ -73,7 +73,6 @@ defmodule FireSale.AlertWorker do
         end)|> Enum.reject(fn (a) -> is_nil(a) end)
 
         unless Enum.empty?(alert_prices) do
-          IO.puts 'sending email...'
           AlertMailer.send_alert user.email, alert_prices
         end
       end
