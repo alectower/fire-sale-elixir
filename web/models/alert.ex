@@ -12,25 +12,29 @@ defmodule FireSale.Alert do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ %{}) do
-    new_params = params
+  def changeset(alert, params \\ %{}) do
+    params = Map.put(
+      params,
+      "price",
+      convert_price(params["price"])
+    )
 
-    if !Enum.empty?(params) do
-      price = convert_price(params)
-      new_params = Map.put(new_params, "price", price)
-    end
-
-    struct
-    |> cast(new_params, [:symbol, :price, :user_id])
+    alert
+    |> cast(params, [:symbol, :price, :user_id])
+    |> validate_required([:symbol, :price, :user_id])
   end
 
-  def convert_price(params) do
-    price_param = Map.get(params, "price")
+  defp convert_price(price) do
+    case price do
+      nil -> nil
+      "" -> nil
+      p when is_integer(p) -> p * 100
+      p ->
+        {c_price, p} = Float.parse(p)
 
-    {price, _} = Float.parse(price_param)
-
-    price * 100
-    |> :erlang.float_to_list([{:decimals, 0}])
-    |> :erlang.list_to_integer
+        c_price * 100
+        |> :erlang.float_to_list([{:decimals, 0}])
+        |> :erlang.list_to_integer
+    end
   end
 end

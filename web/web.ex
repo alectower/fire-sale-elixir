@@ -18,7 +18,8 @@ defmodule FireSale.Web do
 
   def model do
     quote do
-      use Ecto.Model
+      use Ecto.Schema
+      import Ecto.Changeset
     end
   end
 
@@ -27,10 +28,14 @@ defmodule FireSale.Web do
       use Phoenix.Controller
 
       alias FireSale.Repo
-      import Ecto.Model
+
       import Ecto.Query, only: [from: 1, from: 2]
 
       import FireSale.Router.Helpers
+
+      def current_user(conn) do
+        Guardian.Plug.current_resource(conn)
+      end
     end
   end
 
@@ -60,9 +65,8 @@ defmodule FireSale.Web do
       use Phoenix.Channel
 
       alias FireSale.Repo
-      import Ecto.Model
-      import Ecto.Query, only: [from: 1, from: 2]
 
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 

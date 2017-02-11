@@ -35,7 +35,7 @@ defmodule FireSale.Mixfile do
   defp deps do
     [
      {:phoenix, "~> 1.2"},
-     {:phoenix_ecto, "~> 2.0"},
+     {:phoenix_ecto, "~> 3.2"},
      {:postgrex, "~> 0.0"},
      {:phoenix_html, "~> 2.1"},
      {:phoenix_haml, "~> 0.2"},
