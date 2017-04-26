@@ -2,9 +2,9 @@
 <%= for alert <- @alerts do %>
   <p>
     <%= link alert[:symbol], to: "https://www.google.com/finance?q=#{alert[:exchange]}:#{alert[:symbol]}", target: "_blank" %> <br>
-    <%= "Alert price:   $#{alert[:alert_price]}" %> <br>
-    <%= "Current price: $#{alert[:price]}" %> <br>
-    <%= "Close price:   $#{alert[:close_price]}" %> <br>
-    <%= "Price change:  #{alert[:change_price]}%" %> <br>
+    Alert price:&nbsp;&nbsp;&nbsp;<%= "$#{alert[:alert_price]}" %> <br>
+    Current price:&nbsp;<%= "$#{alert[:price]}" %> <br>
+    Close price:&nbsp;&nbsp;&nbsp;<%= "$#{alert[:close_price]}" %> <br>
+    Price change:&nbsp;&nbsp;<%= "#{alert[:change_price]}%" %> <br>
   </p>
 <%= end %>
