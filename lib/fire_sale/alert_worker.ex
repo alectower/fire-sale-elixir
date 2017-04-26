@@ -11,7 +11,8 @@ defmodule FireSale.AlertWorker do
     |> Enum.each(fn (user) ->
       alerts = Repo.all(
         from a in Alert,
-        where: a.user_id == ^user.id
+        where: a.user_id == ^user.id,
+        order_by: a.symbol
       )
 
       if Enum.count(alerts) > 0 do
