@@ -27,7 +27,7 @@ defmodule FireSale.Tradeking do
     url = @tradeking_url <> @quotes_endpoint <> symbols <>
       "&fids=exch,symbol,ask,bid,last," <>
       "pe,eps,yield,div,divexdate,divfreq," <>
-      "prbook,wk52hi,wk52hidate,wk52lo,wk52lodate"
+      "prbook,wk52hi,wk52hidate,wk52lo,wk52lodate,cl,chg"
 
     make_request(url)
     |> parse_response([:quotes, :quote])

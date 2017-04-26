@@ -35,6 +35,8 @@ defmodule FireSale.AlertWorker do
           ask_price = Float.parse(company[:ask]) |> elem(0)
           bid_price = Float.parse(company[:bid]) |> elem(0)
           last_price = Float.parse(company[:last]) |> elem(0)
+          close_price = Float.parse(company[:cl]) |> elem(0)
+          change_price = Float.parse(company[:chg]) |> elem(0)
           price = if last_price > 0 do last_price else ask_price end
           if price <= alert_price do
             %{
@@ -44,7 +46,9 @@ defmodule FireSale.AlertWorker do
               ask_price: ask_price,
               bid_price: bid_price,
               last_price: last_price,
-              price: price
+              price: price,
+              close_price: close_price,
+              change_price: change_price
             }
           end
         end)|> Enum.reject(fn (a) -> is_nil(a) end)

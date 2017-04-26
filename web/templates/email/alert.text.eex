@@ -1,7 +1,11 @@
 It's a fire sale!
 
 <%= for alert <- @alerts do %>
-  <%= "#{alert[:symbol]}'s" %> alert price <%= "$#{alert[:alert_price]}" %> has been triggered, it is now trading at <%= "$#{alert[:price]}!" %>
+  <%= "#{alert[:symbol]}" %>
+  <%= "Alert price: $#{alert[:alert_price]}" %>
+  <%= "Current price: $#{alert[:price]}" %>
+  <%= "Close price: $#{alert[:close_price]}" %>
+  <%= "Price change: #{alert[:change_price]}%" %>
 
   https://www.google.com/finance?q=<%= "#{alert[:exchange]}" %>:<%= "#{alert[:symbol]}" %>
 
