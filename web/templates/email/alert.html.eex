@@ -1,15 +1,16 @@
 <h1> It's a fire sale! </h1>
 <p>
-  <span style="display: inline-block; width: 80px">Symbol</span>
+  <span style="display: inline-block; width: 70px">Symbol</span>
   <span style="display: inline-block; width: 80px">Price</span>
   <span style="display: inline-block; width: 80px">Close</span>
   <span style="display: inline-block; width: 80px">Change</span>
   <br>
   <%= for alert <- @alerts do %>
-    <span style="display: inline-block; width: 80px"><%= link alert[:symbol], to: "https://www.google.com/finance?q=#{alert[:exchange]}:#{alert[:symbol]}", target: "_blank" %></span>
-    <span style="display: inline-block; width: 80px"><%= "$#{alert[:alert_price]}" %></span>
+    <span style="display: inline-block; width: 70px"><%= link alert[:symbol], to: "https://www.google.com/finance?q=#{alert[:exchange]}:#{alert[:symbol]}", target: "_blank" %></span>
+    <span style="display: inline-block; width: 80px"><%= "$#{alert[:price]}" %></span>
     <span style="display: inline-block; width: 80px"><%= "$#{alert[:close_price]}" %></span>
-    <span style="display: inline-block; width: 80px"><%= "#{alert[:change_price]}%" %></span>
+    <span style="display: inline-block; width: 80px; text-align: right"><%= "#{alert[:change_price]}%" %></span>
+    <br>
     <br>
   <%= end %>
 </p>
