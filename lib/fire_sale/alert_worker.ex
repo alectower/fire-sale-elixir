@@ -49,7 +49,7 @@ defmodule FireSale.AlertWorker do
               last_price: last_price,
               price: price,
               close_price: close_price,
-              change_price: :io_lib.format("~.3f", [(price - close_price) / close_price])
+              change_price: :io_lib.format("~.3f", [(price - close_price) / close_price * 100])
             }
           end
         end)|> Enum.reject(fn (a) -> is_nil(a) end)
